@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  TimerViewController.h
 //  Impostor Objective C
 //
 //  Created by Mykola Sereda on 20.07.2020.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface TimerViewController : UIViewController
 
 @end
 
+NS_ASSUME_NONNULL_END
