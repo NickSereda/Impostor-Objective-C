@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TimerViewController : UIViewController
 
+- (IBAction)playAgainButtonClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *timerLabel;
+-(void)onTick:(NSTimer *)timer;
+@property (assign) int *selectedMinutes;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

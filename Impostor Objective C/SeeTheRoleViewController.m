@@ -48,7 +48,9 @@
          SeeTheRoleViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Places"];
 
     vc.placesAndSpyArray = _placesAndSpyArray;
+    vc.selectedMinutes = _selectedMinutes;
     
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
        [self presentViewController:vc animated:YES completion:^{}];
     
 }

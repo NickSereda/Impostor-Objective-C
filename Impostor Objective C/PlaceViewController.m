@@ -7,6 +7,8 @@
 //
 
 #import "PlaceViewController.h"
+#import "SeeTheRoleViewController.h"
+#import "TimerViewController.h"
 
 @interface PlaceViewController ()
 
@@ -22,23 +24,10 @@
 -(void)viewWillAppear:(BOOL)animated {
 [super viewWillAppear:YES];
 
+    self.placeOrSpyLabel.text = [_placesAndSpyArray lastObject];
+     NSLog(@"FIRST OBECT: %@", [_placesAndSpyArray lastObject]);
     NSLog(@"IN PLACES VC: %@", _placesAndSpyArray);
-    
-    
-    if  (_placesAndSpyArray.count == 1) {
-        
-        // performSegue(withIdentifier: "toTimerVC", sender: self)
-        
-    }
-    
-     else {
-         [_placesAndSpyArray removeLastObject];
-         
-         NSLog(@"NEW ARRAY: %@", _placesAndSpyArray);
-         
-           // performSegue(withIdentifier: "toRoleVC", sender: self)
-        }
-    
+
     
 }
 /*
@@ -52,6 +41,36 @@
 */
 
 - (IBAction)oKButtonClicked:(id)sender {
+    
+    if  (_placesAndSpyArray.count == 1) {
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:
+                                          @"Main" bundle:[NSBundle mainBundle]];
+             TimerViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Timer"];
+
+           vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        vc.selectedMinutes = _selectedMinutes;
+        
+           [self presentViewController:vc animated:YES completion:^{}];
+        
+    }
+    
+     else {
+         [_placesAndSpyArray removeLastObject];
+        // NSLog(@"NEW ARRAY: %@", _placesAndSpyArray);
+         
+           // performSegue(withIdentifier: "toRoleVC", sender: self)
+         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:
+                                           @"Main" bundle:[NSBundle mainBundle]];
+              SeeTheRoleViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SeeTheRole"];
+
+            vc.placesAndSpyArray = _placesAndSpyArray;
+         vc.selectedMinutes = _selectedMinutes;
+         vc.modalPresentationStyle = UIModalPresentationFullScreen;
+         
+            [self presentViewController:vc animated:YES completion:^{}];
+        }
+    
 }
 
 

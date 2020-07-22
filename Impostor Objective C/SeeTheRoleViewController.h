@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SeeTheRoleViewController : UIViewController
+
+@property (assign) int *selectedMinutes;
 @property (nonatomic, strong) NSMutableArray *placesAndSpyArray;
 
 - (IBAction)nextButtonClicked:(id)sender;

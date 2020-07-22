@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PlaceViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *placeOrSpyLabel;
+
+@property (assign) int *selectedMinutes;
 @property (nonatomic, strong) NSMutableArray *placesAndSpyArray;
 
 - (IBAction)oKButtonClicked:(id)sender;

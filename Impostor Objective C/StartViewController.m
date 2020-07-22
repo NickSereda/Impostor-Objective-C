@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSMutableArray *places;
 //@property (nonatomic, strong) NSMutableArray *placesAndSpyArray;
 
-@property (assign) int *selectedMinutesInSeconds;
+@property (assign) int *selectedMinutes;
 @property (assign) int *selectedPlayers;
 
 @end
@@ -41,7 +41,7 @@ int count;
 -(void)viewWillAppear:(BOOL)animated {
      [super viewWillAppear:YES];
     
-    self.selectedMinutesInSeconds = 1 * 60;
+    self.selectedMinutes = 1;
     self.selectedPlayers = 3;
     
    // [placesAndSpyArray removeAllObjects];
@@ -69,11 +69,6 @@ int count;
     
     chosenPlace = [_places objectAtIndex:rnd];
     
-//    [placesAndSpyArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        <#code#>
-//    }];
-
-    
     if (_selectedPlayers == 3) {
        placesAndSpyArray = [NSMutableArray arrayWithObjects:
        chosenPlace, chosenPlace, @"You Are The Spy!", nil];
@@ -94,7 +89,7 @@ int count;
         chosenPlace, chosenPlace,chosenPlace, chosenPlace,chosenPlace,chosenPlace, @"You Are The Spy!", nil];
     }
     
-    NSLog (@"Number of elements in array = %lu", [placesAndSpyArray count]);
+//    NSLog (@"Number of elements in array = %lu", [placesAndSpyArray count]);
 
     //shuffling array
     NSUInteger count = [placesAndSpyArray count];
@@ -104,7 +99,7 @@ int count;
         [placesAndSpyArray exchangeObjectAtIndex:i withObjectAtIndex:n];
     }
     
-    NSLog(@"%@", placesAndSpyArray);
+//    NSLog(@"%@", placesAndSpyArray);
     
 }
 
@@ -118,9 +113,12 @@ int count;
       SeeTheRoleViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SeeTheRole"];
 
     vc.placesAndSpyArray = placesAndSpyArray;
+    vc.selectedMinutes = _selectedMinutes;
  
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+    
     [self presentViewController:vc animated:YES completion:^{}];
-   
+   //[self.navigationController presentViewController:vc animated:YES completion:^{}];
 }
 
 
@@ -138,23 +136,10 @@ int count;
    
     int valueInt = (int) _minutesStepper.value;
     
-    _selectedMinutesInSeconds = (int) _minutesStepper.value * 60;
+    _selectedMinutes = valueInt;
     
     self.minutesValue.text = [ NSString stringWithFormat:@"0%d : 00", valueInt];
       
 }
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    // Make sure your segue name in storyboard is the same as this line
-//    if ([[segue identifier] isEqualToString:@"toSeeTheRoleVC"])
-//    {
-//        // Get reference to the destination view controller
-//        SeeTheRoleViewController *vc = [segue destinationViewController];
-//
-//        // Pass any objects to the view controller here, like...
-//        [vc placesAndSpyArray : placesAndSpyArray];
-//    }
-//}
 
 @end
